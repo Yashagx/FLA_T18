@@ -1,0 +1,386 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.theory-section {
+    padding: 30px;
+    background: #f8f9fa;
+}
+
+.theory-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.theory-card h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.theory-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.definition {
+    background: #f0f4f8;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.definition h3 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.definition ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.definition li {
+    margin: 5px 0;
+}
+
+.main-content {
+    padding: 30px;
+}
+
+.proof-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.recursive-section {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+}
+
+.re-section {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+}
+
+.proof-section h2 {
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.proof-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.proof-box h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+}
+
+.proof-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.step {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.step:hover {
+    transform: translateX(5px);
+}
+
+.step-number {
+    background: #667eea;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step.conclusion {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.step.conclusion .step-number {
+    background: white;
+    color: #667eea;
+}
+
+.sub-explanation {
+    margin-top: 8px;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.example-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.example-box h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.language-def {
+    background: #f0f4f8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.language-def p {
+    margin: 8px 0;
+    font-size: 1.05em;
+}
+
+.warning {
+    color: #d9534f;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.machine-selector {
+    margin-bottom: 20px;
+}
+
+.machine-selector label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.machine-selector select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.input-area input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.input-area button {
+    padding: 12px 30px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.input-area button:hover {
+    background: #5568d3;
+}
+
+#stop-simulation {
+    background: #d9534f;
+}
+
+#stop-simulation:hover {
+    background: #c9302c;
+}
+
+.result-area {
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    min-height: 60px;
+    display: none;
+}
+
+.result-area.show {
+    display: block;
+}
+
+.result-area.accept {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+}
+
+.result-area.reject {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+}
+
+.result-area.looping {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+}
+
+.tm-simulation {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 100px;
+    display: none;
+}
+
+.tm-simulation.show {
+    display: block;
+}
+
+.simulation-step {
+    padding: 10px;
+    margin: 5px 0;
+    background: white;
+    border-radius: 5px;
+    border-left: 3px solid #667eea;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.comparison-table {
+    padding: 30px;
+    background: #f8f9fa;
+}
+
+.comparison-table h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+tbody tr:hover {
+    background: #e9ecef;
+}
+
+.yes {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.no {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .theory-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .input-area {
+        flex-direction: column;
+    }
+    
+    header h1 {
+        font-size: 1.8em;
+    }
+}

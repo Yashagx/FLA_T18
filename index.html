@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure Under Complement - Interactive Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Closure Properties Under Complement</h1>
+            <p class="subtitle">Exploring Recursive vs Recursively Enumerable Languages</p>
+        </header>
+
+        <div class="theory-section">
+            <div class="theory-card">
+                <h2>📚 Theory Overview</h2>
+                <div class="theory-content">
+                    <div class="definition">
+                        <h3>Recursive Languages (Decidable)</h3>
+                        <p>A language L is <strong>recursive</strong> if there exists a Turing Machine that:</p>
+                        <ul>
+                            <li>Halts on all inputs</li>
+                            <li>Accepts if w ∈ L</li>
+                            <li>Rejects if w ∉ L</li>
+                        </ul>
+                    </div>
+                    <div class="definition">
+                        <h3>Recursively Enumerable Languages (RE)</h3>
+                        <p>A language L is <strong>recursively enumerable</strong> if there exists a Turing Machine that:</p>
+                        <ul>
+                            <li>Accepts if w ∈ L</li>
+                            <li>May reject or loop forever if w ∉ L</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Recursive Languages Section -->
+            <section class="proof-section recursive-section">
+                <h2>✅ Recursive Languages ARE Closed Under Complement</h2>
+                
+                <div class="proof-box">
+                    <h3>Proof</h3>
+                    <div class="proof-steps">
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            <p>Let L be a recursive language with Turing Machine M that decides it</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            <p>M halts on all inputs and accepts/rejects correctly</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            <p>To decide L̄ (complement), create M' that:</p>
+                            <ul>
+                                <li>Runs M on input w</li>
+                                <li>If M accepts, M' rejects</li>
+                                <li>If M rejects, M' accepts</li>
+                            </ul>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">4</span>
+                            <p>Since M halts on all inputs, M' also halts on all inputs</p>
+                        </div>
+                        <div class="step conclusion">
+                            <span class="step-number">∴</span>
+                            <p>L̄ is recursive. Recursive languages are closed under complement!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h3>Interactive Example</h3>
+                    <div class="language-def">
+                        <p><strong>Language L:</strong> {w | w contains equal 0s and 1s}</p>
+                        <p><strong>Complement L̄:</strong> {w | w does NOT contain equal 0s and 1s}</p>
+                    </div>
+                    
+                    <div class="input-area">
+                        <input type="text" id="recursive-input" placeholder="Enter binary string (e.g., 0011, 101)" pattern="[01]*">
+                        <button id="test-recursive">Test String</button>
+                    </div>
+                    
+                    <div id="recursive-result" class="result-area"></div>
+                    
+                    <div class="tm-simulation" id="recursive-sim"></div>
+                </div>
+            </section>
+
+            <!-- RE Languages Section -->
+            <section class="proof-section re-section">
+                <h2>❌ RE Languages are NOT Closed Under Complement</h2>
+                
+                <div class="proof-box">
+                    <h3>Proof by Counterexample</h3>
+                    <div class="proof-steps">
+                        <div class="step">
+                            <span class="step-number">!</span>
+                            <p><strong>Counterexample:</strong> The Halting Problem Language</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            <p>Let L<sub>H</sub> = {⟨M, w⟩ | M halts on input w}</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            <p>L<sub>H</sub> is recursively enumerable (we can simulate M on w and accept if it halts)</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            <p>L̄<sub>H</sub> = {⟨M, w⟩ | M does NOT halt on input w}</p>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">4</span>
+                            <p>L̄<sub>H</sub> is NOT recursively enumerable!</p>
+                            <p class="sub-explanation">If it were, both L<sub>H</sub> and L̄<sub>H</sub> would be RE, making L<sub>H</sub> recursive - contradiction!</p>
+                        </div>
+                        <div class="step conclusion">
+                            <span class="step-number">∴</span>
+                            <p>RE languages are NOT closed under complement!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h3>Interactive Simulation</h3>
+                    <div class="language-def">
+                        <p><strong>Simulated L<sub>accept</sub>:</strong> {w | TM accepts w}</p>
+                        <p><strong>Complement:</strong> {w | TM rejects or loops on w}</p>
+                        <p class="warning">⚠️ The complement cannot be recognized - TM cannot distinguish reject from infinite loop!</p>
+                    </div>
+                    
+                    <div class="machine-selector">
+                        <label>Choose a Turing Machine behavior:</label>
+                        <select id="tm-behavior">
+                            <option value="accept-even">Accept strings of even length</option>
+                            <option value="accept-0">Accept strings starting with 0</option>
+                            <option value="loop-1">Loop on strings starting with 1</option>
+                            <option value="reject-empty">Reject empty string</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-area">
+                        <input type="text" id="re-input" placeholder="Enter string (e.g., 01, 1010)" pattern="[01]*">
+                        <button id="test-re">Simulate TM</button>
+                        <button id="stop-simulation" style="display:none;">Stop Simulation</button>
+                    </div>
+                    
+                    <div id="re-result" class="result-area"></div>
+                    
+                    <div class="tm-simulation" id="re-sim"></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="comparison-table">
+            <h2>📊 Summary Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Recursive Languages</th>
+                        <th>RE Languages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Decidable?</td>
+                        <td class="yes">Yes ✓</td>
+                        <td class="no">No ✗</td>
+                    </tr>
+                    <tr>
+                        <td>Always Halts?</td>
+                        <td class="yes">Yes ✓</td>
+                        <td class="no">No ✗</td>
+                    </tr>
+                    <tr>
+                        <td>Closed Under Complement?</td>
+                        <td class="yes">Yes ✓</td>
+                        <td class="no">No ✗</td>
+                    </tr>
+                    <tr>
+                        <td>Can Reject Definitively?</td>
+                        <td class="yes">Yes ✓</td>
+                        <td class="no">No ✗</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>Interactive demonstration of closure properties in Automata Theory</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
